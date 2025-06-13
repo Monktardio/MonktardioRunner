@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monktardio Runner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            background-color: #000;
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #008080;
+        }
+        #joystickZone {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 180px;
+            height: 180px;
+            z-index: 10;
+        }
+        #rightControls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+        #rightControls button {
+            padding: 40px;
+            font-size: 30px;
+            border: 2px solid #fff;
+            background: #333;
+            color: #fff;
+            border-radius: 10px;
+        }
+        #highscoreList {
+            position: absolute;
+            top: 60px;
+            left: calc(50% + 180px);
+            color: white;
+            font-family: monospace;
+            display: none;
+            z-index: 10;
+        }
+        #backButton {
+            display: none;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 16px;
+            z-index: 20;
+            background: #444;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+
+    <div id="joystickZone"></div>
+
+    <div id="rightControls">
+        <button ontouchstart="jump()">⬆️</button>
+    </div>
+
+    <div id="highscoreList"></div>
+    <button id="backButton" onclick="goBack()">⬅️ Back to Website</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.9.0/nipplejs.min.js"></script>
+    <script src="game.js"></script>
+
+    <!-- Responsive Canvas Script -->
+    <script>
+        function resizeCanvas() {
+            const canvas = document.getElementById('gameCanvas');
+            const aspectRatio = 800 / 400;
+            let width = window.innerWidth;
+            let height = window.innerHeight;
+
+            if (width / height > aspectRatio) {
+                width = height * aspectRatio;
+            } else {
+                height = width / aspectRatio;
+            }
+
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('orientationchange', resizeCanvas);
+        resizeCanvas();
+    </script>
+</body>
+</html>
+

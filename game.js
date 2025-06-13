@@ -58,7 +58,7 @@ window.addEventListener("keyup", e => keys[e.code] = false);
 canvas.addEventListener("click", () => { if (gameOver) resetGame(); });
 
 function goBack() {
-    window.location.href = "https://www.monktard.io/?rc=test-site";
+    window.location.href = "https://www.monktard.io";
 }
 
 function spawnObstacle() {
